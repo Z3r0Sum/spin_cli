@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+require 'cmdparse'
+require_relative '../lib/commands/pipeline_cmd'
+
+endpoint = ENV['SPINNAKER_ENDPOINT']
+if endpoint == nil 
+  puts 'Please set a SPINNAKER_ENDPOINT environment variable that can be used to hit the RESTful API!'
+  puts 'i.g. localhost:9000 OR spinnaker_endpoint:8080'
+  Process.exit(1)
+end
+
+parser = CmdParse::CommandParser.new(handle_exceptions: :no_help)
+parser.main_options.program_name = 'spincli'
+parser.main_options.version = '0.1.0'
+parser.main_options.banner = 'Interface with the Spinnaker REST API'
+
+parser.add_command(CmdParse::HelpCommand.new, default: true)
+parser.add_command(CmdParse::VersionCommand.new)
+parser.add_command(SpinCli::PipelineCmd.new(endpoint))
+
+parser.parse

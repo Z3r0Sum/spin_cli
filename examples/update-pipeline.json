@@ -1,0 +1,15 @@
+{
+  "name": "test-pipeline2",
+  "stages": [],
+  "triggers": [],
+  "parameterConfig": [
+    {
+      "name": "update-test",
+      "description": "this is a spincli update test"
+    }
+  ], 
+  "application": "underarmour",
+  "limitConcurrent": true,
+  "keepWaitingPipelines": false,
+  "parallel": true
+}

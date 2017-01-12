@@ -1,0 +1,9 @@
+{
+  "name": "test-pipeline2",
+  "stages": [],
+  "triggers": [],
+  "application": "underarmour",
+  "limitConcurrent": true,
+  "keepWaitingPipelines": false,
+  "parallel": true
+}
