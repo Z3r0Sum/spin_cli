@@ -12,7 +12,7 @@ module SpinCli
 
     # Creates a pipeline from scratch via a JSON file that meets the Spinnaker JSON Spec.
     def create(json_file)
-      url = "#{@endpoint}/gate/pipelines"
+      url = "#{@endpoint}/pipelines"
       begin
         f = File.read(json_file)
         json_payload = JSON.parse(f)
@@ -28,7 +28,7 @@ module SpinCli
 
     # Deletes a pipeline within Spinnaker for a certain Spinnaker app
     def delete(app, pipeline_name)
-      url = "#{@endpoint}/gate/pipelines/#{app}/#{pipeline_name}"
+      url = "#{@endpoint}/pipelines/#{app}/#{pipeline_name}"
       begin
         RestClient.delete(url)
       rescue => e
@@ -39,7 +39,7 @@ module SpinCli
 
     # Returns a string of all pipeline names and IDs
     def name_ids
-      url = "#{@endpoint}/gate/pipelineConfigs"
+      url = "#{@endpoint}/pipelineConfigs"
       begin
         json_resp = RestClient.get(url, { :accept => :json })
         parse_pipelines_name_id(json_resp)
@@ -51,7 +51,7 @@ module SpinCli
 
     # Returns a pipeline config for a certain Spinnaker app and pipeline
     def get(app, pipeline_name)
-      url = "#{@endpoint}/gate/pipelineConfigs"
+      url = "#{@endpoint}/pipelineConfigs"
       begin
         json_resp = RestClient.get(url, { :accept => :json })
         pipeline_config = parse_pipeline_name(json_resp, app, pipeline_name)
@@ -68,7 +68,7 @@ module SpinCli
       # We need certain data about the pipeline that the user won't have or want
       # to get ahead of their changes.
       pipeline_config = get(app, pipeline_name)
-      url = "#{@endpoint}/gate/pipelines"
+      url = "#{@endpoint}/pipelines"
       begin
         f = File.read(json_file)
         json_payload = JSON.parse(f)
