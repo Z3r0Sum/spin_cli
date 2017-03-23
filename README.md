@@ -22,7 +22,7 @@
 
 1. Clone the repo
 2. Run `bundle install` from the project's root
-3. Export an environment variable containing your Spinnaker Endpoint: `export SPINNAKER_ENDPOINT=localhost:9000`
+3. Export an environment variable containing your Spinnaker Endpoint: `export SPINNAKER_ENDPOINT=localhost:8084` (Spinnaker Gate Endpoint)
 4. Leverage the `spincli` command in `spin_cli/bin`
 
 ## Basic Use
