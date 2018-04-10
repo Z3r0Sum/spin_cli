@@ -4,7 +4,7 @@ require 'cmdparse'
 require_relative '../lib/commands/pipeline_cmd'
 
 endpoint = ENV['SPINNAKER_ENDPOINT']
-if endpoint == nil 
+if endpoint.nil?
   puts 'Please set a SPINNAKER_ENDPOINT environment variable that can be used to hit the RESTful API!'
   puts 'This must be the mapped to the gate service!'
   puts 'i.g. localhost:8084 OR spinnaker_endpoint:8084'
@@ -13,7 +13,7 @@ end
 
 parser = CmdParse::CommandParser.new(handle_exceptions: :no_help)
 parser.main_options.program_name = 'spincli'
-parser.main_options.version = '0.1.0'
+parser.main_options.version = '1.0.0'
 parser.main_options.banner = 'Interface with the Spinnaker REST API'
 
 parser.add_command(CmdParse::HelpCommand.new, default: true)
